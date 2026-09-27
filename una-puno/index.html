@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruta Cachimbo — Test vocacional UNA Puno</title>
+<meta name="description" content="Descubre en 5 minutos qué área de la Universidad Nacional del Altiplano de Puno se ajusta mejor a ti.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ruta Cachimbo — ¿Qué carrera es tu ruta en la UNA Puno?">
+<meta property="og:description" content="50 preguntas cortas, unos 5 minutos, y te decimos qué área de la UNA Puno se ajusta mejor a ti.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ruta Cachimbo — ¿Qué carrera es tu ruta en la UNA Puno?">
+<meta name="twitter:description" content="50 preguntas cortas, unos 5 minutos, y te decimos qué área de la UNA Puno se ajusta mejor a ti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --surface: #FFFFFF;
+    --surface-2: #EFEAE0;
+    --text: #1B2333;
+    --text-muted: #5B6472;
+    --border: #E2DCCC;
+    --accent: #E8951F;
+    --accent-contrast: #1B2333;
+    --shadow: 0 1px 2px rgba(27,35,51,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10182A;
+      --surface: #182238;
+      --surface-2: #1F2C47;
+      --text: #F3EEE0;
+      --text-muted: #A9B1C4;
+      --border: #2C3856;
+      --accent: #E8951F;
+      --accent-contrast: #10182A;
+      --shadow: 0 1px 3px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10182A;
+    --surface: #182238;
+    --surface-2: #1F2C47;
+    --text: #F3EEE0;
+    --text-muted: #A9B1C4;
+    --border: #2C3856;
+    --accent: #E8951F;
+    --accent-contrast: #10182A;
+    --shadow: 0 1px 3px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', system-ui, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 28px 20px 56px;
+  }
+  .brand {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    margin-bottom: 34px;
+  }
+  h1, h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    color: var(--text);
+  }
+  h1 { font-size: clamp(1.7rem, 6vw, 2.3rem); }
+  h2 { font-size: clamp(1.35rem, 5vw, 1.7rem); }
+  p { line-height: 1.55; color: var(--text-muted); margin: 0 0 20px; max-width: 62ch; }
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadein 0.35s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .route-hero { margin: 6px 0 28px; }
+  .route-hero svg { width: 100%; height: auto; display: block; }
+
+  button, .btn {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--accent-contrast);
+    font-weight: 600;
+    padding: 15px 26px;
+    border: none;
+    width: 100%;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(232,149,31,0.35); }
+  .btn-primary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    padding: 14px 26px;
+    width: 100%;
+  }
+  .btn-secondary:hover { border-color: var(--accent); }
+  .btn-secondary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  .link-quiet {
+    background: none; border: none; color: var(--text-muted);
+    font-size: 0.9rem; text-decoration: underline; padding: 6px 0; cursor: pointer;
+  }
+  .link-quiet:focus-visible { outline: 2px solid var(--accent); }
+
+  .progress-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 26px;
+  }
+  .progress-track {
+    flex: 1; height: 6px; border-radius: 999px; background: var(--surface-2);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: var(--accent); border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+  .progress-label { font-size: 0.85rem; color: var(--text-muted); white-space: nowrap; }
+
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+  }
+  .question-card h2 { margin-bottom: 4px; }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-align: left;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 0.98rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .option-btn:hover { border-color: var(--accent); }
+  .option-btn.selected {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, var(--surface-2));
+    font-weight: 600;
+  }
+  .option-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .quiz-nav { display: flex; justify-content: space-between; align-items: center; }
+
+  .result-blurb { font-size: 1.02rem; }
+
+  .bar-row { margin-bottom: 14px; }
+  .bar-row .bar-label {
+    display: flex; justify-content: space-between; font-size: 0.92rem;
+    margin-bottom: 5px; color: var(--text);
+  }
+  .bar-row .bar-label span:last-child { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .bar-track { height: 10px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; transition: width 0.6s ease; }
+
+  .careers-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 24px 0;
+  }
+  .careers-box h3 {
+    font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 600;
+    margin: 0 0 12px; color: var(--text);
+  }
+  .careers-box ul { margin: 0; padding-left: 20px; color: var(--text); }
+  .careers-box li { margin-bottom: 6px; line-height: 1.4; }
+  .also-line { font-size: 0.88rem; color: var(--text-muted); margin-top: 10px; }
+
+  .cta-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 26px; }
+
+  .testimonials-wrap {
+    margin-top: 40px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+  }
+  .testimonials-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; }
+  .testimonials-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    animation: scroll-left 70s linear infinite;
+  }
+  .testimonials-wrap:hover .testimonials-track { animation-play-state: paused; }
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .testi-card {
+    flex: 0 0 auto;
+    width: 250px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .testi-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .testi-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+  .testi-text { font-size: 0.87rem; line-height: 1.45; color: var(--text-muted); }
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-track { animation: none; }
+    .testimonials-wrap { overflow-x: auto; }
+  }
+
+  .resume-note {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 22px; font-size: 0.9rem;
+  }
+  .resume-note button { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">Ruta Cachimbo</div>
+
+  <!-- LANDING -->
+  <section id="screen-landing" class="screen active">
+    <div class="route-hero">
+      <svg viewBox="0 0 520 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="14" y1="45" x2="430" y2="45" stroke="var(--border)" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"/>
+        <circle cx="14" cy="45" r="8" fill="var(--accent)"/>
+        <circle cx="460" cy="20" r="6" fill="#4C7EAE"/>
+        <circle cx="480" cy="45" r="6" fill="#5B9A4E"/>
+        <circle cx="460" cy="70" r="6" fill="#D95866"/>
+        <circle cx="500" cy="15" r="6" fill="#C1872E"/>
+        <circle cx="505" cy="45" r="6" fill="#8C5FA8"/>
+        <circle cx="500" cy="75" r="6" fill="#2F968D"/>
+      </svg>
+    </div>
+
+    <div id="resume-note" class="resume-note" style="display:none;">
+      <span id="resume-note-text">Tienes un test sin terminar.</span>
+      <div style="display:flex; gap:10px; margin-top:10px;">
+        <button class="btn-secondary" id="btn-resume" style="width:auto; padding:8px 16px; font-size:0.88rem;">Continuar</button>
+        <button class="link-quiet" id="btn-restart-from-note" style="padding:8px 0;">Empezar de nuevo</button>
+      </div>
+    </div>
+
+    <h1>¿Qué carrera es tu ruta en la UNA Puno?</h1>
+    <p>Son 50 preguntas cortas sobre lo que te gusta y cómo eres, no de conocimientos — no hay respuestas correctas ni incorrectas. Te toma unos 5 minutos y al final te mostramos qué tan compatible eres con cada gran área de estudio en la Universidad Nacional del Altiplano de Puno.</p>
+    <button class="btn-primary" id="btn-start">Comenzar mi test</button>
+
+    <div class="testimonials-wrap">
+      <div class="testimonials-label">Lo que dicen quienes ya usaron el material</div>
+      <div class="testimonials-track" id="testimonials-track"></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="screen-quiz" class="screen">
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-label" id="progress-label">Pregunta 1 de 50</div>
+    </div>
+    <div class="question-card">
+      <h2 id="question-text">—</h2>
+      <div class="options" id="options-container"></div>
+    </div>
+    <div class="quiz-nav">
+      <button class="link-quiet" id="btn-prev">‹ Anterior</button>
+      <button class="link-quiet" id="btn-restart-quiz">Empezar de nuevo</button>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="screen-results" class="screen">
+    <h1 id="result-headline">Tu ruta apunta hacia:</h1>
+    <p class="result-blurb" id="result-blurb"></p>
+
+    <div id="bars-container"></div>
+
+    <div class="careers-box">
+      <h3>Carreras que puedes explorar en la UNA Puno dentro de esta área</h3>
+      <ul id="careers-list"></ul>
+      <p id="careers-empty-msg" style="display:none; margin:0 0 10px; color:var(--text-muted);"></p>
+      <div class="also-line" id="also-line"></div>
+    </div>
+
+    <div class="cta-stack">
+      <a class="btn-primary" style="text-decoration:none; display:block; text-align:center;" id="btn-whatsapp" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+      <a class="btn-secondary" style="text-decoration:none; display:block; text-align:center;" id="btn-invite" href="#" target="_blank" rel="noopener">Invita a un amigo a hacer el test</a>
+      <button class="link-quiet" id="btn-restart-results" style="align-self:center;">Repetir el test</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- CONFIG: reemplaza estos dos valores antes de compartir el link ----
+  var WHATSAPP_NUMBER = "51983373977";
+  var UNI_SIGLAS = "la UNA Puno";
+  // --------------------------------------------------------------------
+
+  var CLUSTERS = {
+    ing: {
+      name: "Ingeniería y Tecnología",
+      color: "#4C7EAE",
+      blurb: "Te va bien resolviendo problemas concretos, entendiendo cómo funcionan las cosas y construyendo soluciones con lógica y números.",
+      careers: ["Ingeniería Civil", "Ingeniería Estadística e Informática", "Ingeniería Geológica", "Ingeniería Mecánica, Eléctrica y de Sistemas", "Ingeniería Metalúrgica", "Ingeniería Química", "Ingeniería Topográfica y Agrimensura", "Ingeniería de Minas", "Ciencias Físico Matemáticas"]
+    },
+    agr: {
+      name: "Ciencias Agrarias y Ambientales",
+      color: "#5B9A4E",
+      blurb: "Te conectas con la naturaleza, la producción de alimentos y el cuidado del entorno — un perfil clave para el campo y los recursos naturales de Puno.",
+      careers: ["Ingeniería Agroindustrial", "Ingeniería Agronómica", "Ingeniería Agrícola", "Medicina Veterinaria", "Biología"]
+    },
+    sal: {
+      name: "Ciencias de la Salud",
+      color: "#D95866",
+      blurb: "Te mueve el bienestar de las personas. Tienes paciencia, capacidad de cuidado y un interés genuino por cómo funciona el cuerpo humano.",
+      careers: ["Enfermería", "Medicina Humana", "Nutrición Humana", "Odontología"]
+    },
+    neg: {
+      name: "Negocios, Economía y Derecho",
+      color: "#C1872E",
+      blurb: "Te sientes cómodo liderando, organizando y tomando decisiones — un perfil natural para los negocios, la gestión o el derecho.",
+      careers: ["Administración", "Ciencias Contables", "Derecho", "Ingeniería Económica"]
+    },
+    edu: {
+      name: "Educación, Humanidades y Comunicación",
+      color: "#8C5FA8",
+      blurb: "Te gusta comunicar, enseñar y entender a las personas, su cultura y su historia — un perfil fuerte para la educación, las ciencias sociales y la comunicación.",
+      careers: ["Turismo", "Arte", "Ciencias Sociales", "Educación Física", "Educación Inicial", "Educación Primaria", "Educación Secundaria", "Antropología", "Ciencias de la Comunicación Social", "Sociología", "Trabajo Social"]
+    },
+    arq: {
+      name: "Arquitectura y Diseño",
+      color: "#2F968D",
+      blurb: "Piensas en espacios, formas y estética. Te atrae diseñar lugares donde la gente va a vivir, trabajar o pasar tiempo.",
+      careers: ["Arquitectura"]
+    }
+  };
+
+  var QUESTIONS = [
+    ["Disfruto resolver problemas de lógica o matemática, aunque me tome tiempo encontrar la solución.", "ing"],
+    ["Me gusta pasar tiempo al aire libre, en el campo o en contacto con la naturaleza.", "agr"],
+    ["Me nace ayudar cuando veo a alguien enfermo o herido.", "sal"],
+    ["Me gusta tomar decisiones y asumir la responsabilidad de un proyecto o equipo.", "neg"],
+    ["Me gusta explicarle algo a otra persona hasta que lo entiende bien.", "edu"],
+    ["Me gusta dibujar o imaginar cómo se vería un espacio antes de construirlo.", "arq"],
+
+    ["Me llama la atención entender cómo funcionan las máquinas o los aparatos electrónicos.", "ing"],
+    ["Me interesa saber cómo se producen los alimentos que comemos todos los días.", "agr"],
+    ["Me interesa aprender cómo funciona el cuerpo humano.", "sal"],
+    ["Disfruto negociar o convencer a otros de mi punto de vista.", "neg"],
+    ["Disfruto leer, escribir o contar historias.", "edu"],
+    ["Presto atención al orden y la estética de los lugares donde estoy.", "arq"],
+
+    ["Prefiero construir o reparar algo con mis propias manos antes que pedirle a alguien que lo haga.", "ing"],
+    ["Disfruto cuidar plantas, animales o un huerto.", "agr"],
+    ["Puedo mantener la calma en una situación de emergencia.", "sal"],
+    ["Me interesa saber cómo se maneja el dinero, un negocio o una empresa.", "neg"],
+    ["Me interesa entender por qué pasaron los hechos históricos y cómo influyen hoy.", "edu"],
+    ["Me interesa cómo se distribuyen los ambientes de una casa o un edificio.", "arq"],
+
+    ["Me gustaría diseñar o programar algo que otras personas usen todos los días.", "ing"],
+    ["Me preocupa el cuidado del medio ambiente y los recursos naturales de mi región.", "agr"],
+    ["Disfruto cuidar de otras personas, incluso en tareas que no son agradables.", "sal"],
+    ["Me llama la atención defender causas justas o resolver conflictos entre personas.", "neg"],
+    ["Me gustaría enseñar o formar a niños o jóvenes.", "edu"],
+    ["Disfruto actividades donde combino algo creativo con algo funcional.", "arq"],
+
+    ["Cuando algo se malogra en casa, intento averiguar por qué antes de llamar a un técnico.", "ing"],
+    ["Me gustaría trabajar en un proyecto de agricultura, ganadería o pesca.", "agr"],
+    ["Me gustaría dedicar mi vida a mejorar la salud de las personas.", "sal"],
+    ["Me veo liderando mi propio negocio o un equipo de trabajo en el futuro.", "neg"],
+    ["Me siento cómodo hablando en público o presentando ideas frente a otros.", "edu"],
+    ["Me gustaría diseñar viviendas, parques o espacios públicos.", "arq"],
+
+    ["Me interesa saber cómo se construyen los puentes, edificios o carreteras.", "ing"],
+    ["Encuentro interesante estudiar el comportamiento o la salud de los animales.", "agr"],
+    ["Soy paciente cuando alguien necesita mi apoyo o cuidado constante.", "sal"],
+    ["Me gusta organizar tareas, presupuestos o planes con orden y anticipación.", "neg"],
+    ["Me interesa cómo se comunican las noticias o los mensajes a la sociedad.", "edu"],
+    ["Tengo facilidad para imaginar formas y proporciones en tres dimensiones.", "arq"],
+
+    ["Disfruto los juegos o retos que requieren estrategia y cálculo.", "ing"],
+    ["Preferiría un trabajo de campo antes que uno de oficina todo el día.", "agr"],
+    ["Me interesa la biología y cómo el cuerpo reacciona ante distintas enfermedades.", "sal"],
+    ["Disfruto debatir o argumentar sobre temas de actualidad.", "neg"],
+    ["Disfruto conocer culturas, idiomas o costumbres distintas a la mía.", "edu"],
+    ["Me llama la atención la arquitectura de los edificios o ciudades que visito.", "arq"],
+
+    ["Me siento cómodo trabajando con números, fórmulas o estadísticas.", "ing"],
+    ["Me llama la atención cómo una materia prima se convierte en un producto terminado.", "agr"],
+    ["Preferiría trabajar en un hospital o centro de salud antes que en una oficina.", "sal"],
+    ["Me interesa entender cómo funcionan las leyes y por qué existen.", "neg"],
+    ["Prefiero un trabajo donde interactúe todo el día con personas antes que uno solitario.", "edu"],
+    ["Prefiero crear algo visualmente atractivo antes que algo puramente funcional.", "arq"],
+
+    ["Me atrae la idea de trabajar en una planta, fábrica o proyecto de ingeniería.", "ing"],
+    ["Me interesa cómo funcionan los medios de comunicación y las redes sociales.", "edu"]
+  ];
+
+  var OPTIONS = [
+    "Nada de acuerdo",
+    "Poco de acuerdo",
+    "Neutral",
+    "Bastante de acuerdo",
+    "Totalmente de acuerdo"
+  ];
+
+  var TESTIMONIALS = [
+    "Lo compré porque quería tener más exámenes de la UNA Puno para practicar. Me sirvió bastante tenerlos juntos porque antes encontraba uno por aquí y otro por allá y perdía tiempo buscando.",
+    "Hay bastante material jaja, sinceramente todavía no termino de revisar todo. Yo me fui directo a los exámenes y después poco a poco fui viendo los libros y videos.",
+    "Buen material 👍 sobretodo si estás estudiando por tu cuenta. Los exámenes resueltos te ayudan a practicar y después puedes revisar exactamente dónde te equivocaste.",
+    "Yo usé bastante las videoclases porque algunos temas se me hacían pesados leyendo nomás. Con la explicación ya entendía mejor y luego practicaba preguntas.",
+    "Está más completo de lo que esperaba. Pensé que serían solamente exámenes de la UNA pero hay bastante contenido adicional para reforzar los cursos.",
+    "Lo que hacía era escoger un examen, poner cronómetro y tratar de resolverlo sin ayuda. Al terminar revisaba los errores. Hacer eso varias veces me ayudó bastante a mejorar mi tiempo.",
+    "Me gustó que puedas ir directamente a lo que necesitas. Yo tenía algunos cursos bien y otros donde estaba perdido xd, así que me enfoqué solamente en esos.",
+    "Los libros casi no los usé porque soy más de ejercicios, pero igual hay bastante. Personalmente lo que más recomiendo son los exámenes y solucionarios.",
+    "Antes de tener el material estudiaba teoría pero casi no practicaba exámenes completos. Cuando empecé a hacerlos me di cuenta que me faltaba bastante controlar el tiempo 😅.",
+    "Para prepararse para la UNA Puno está bueno tener material específico y no solamente ejercicios genéricos. Hay bastante para practicar y puedes ir avanzando según tu nivel."
+  ];
+
+  var AVATAR_SVG = '<svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#C7CDD6"/><circle cx="20" cy="15" r="7" fill="#98A2AE"/><path d="M6 35c1.2-8.2 7.2-13 14-13s12.8 4.8 14 13" fill="#98A2AE"/></svg>';
+
+  function renderTestimonials() {
+    var track = document.getElementById("testimonials-track");
+    var doubled = TESTIMONIALS.concat(TESTIMONIALS);
+    doubled.forEach(function (text) {
+      var card = document.createElement("div");
+      card.className = "testi-card";
+
+      var head = document.createElement("div");
+      head.className = "testi-head";
+      head.innerHTML = AVATAR_SVG;
+
+      var name = document.createElement("span");
+      name.className = "testi-name";
+      name.textContent = "Anónimo";
+      head.appendChild(name);
+
+      var body = document.createElement("div");
+      body.className = "testi-text";
+      body.textContent = text;
+
+      card.appendChild(head);
+      card.appendChild(body);
+      track.appendChild(card);
+    });
+  }
+
+  var STORAGE_KEY = "rutaCachimboVocacional_UNAPUNO_v1";
+
+  var state = { idx: 0, answers: {}, completed: false };
+
+  function loadProgress() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      if (parsed && typeof parsed.idx === "number" && parsed.answers) return parsed;
+    } catch (e) { /* localStorage no disponible: seguimos sin progreso guardado */ }
+    return null;
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) { /* si falla, el test sigue funcionando, solo no recuerda el avance */ }
+  }
+
+  function clearProgress() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    state = { idx: 0, answers: {}, completed: false };
+    saved = null;
+  }
+
+  function showScreen(id) {
+    ["screen-landing", "screen-quiz", "screen-results"].forEach(function (s) {
+      document.getElementById(s).classList.toggle("active", s === id);
+    });
+  }
+
+  function renderQuestion() {
+    var q = QUESTIONS[state.idx];
+    document.getElementById("question-text").textContent = q[0];
+    document.getElementById("progress-label").textContent = "Pregunta " + (state.idx + 1) + " de " + QUESTIONS.length;
+    document.getElementById("progress-fill").style.width = ((state.idx) / QUESTIONS.length * 100) + "%";
+    document.getElementById("btn-prev").style.visibility = state.idx === 0 ? "hidden" : "visible";
+
+    var container = document.getElementById("options-container");
+    container.innerHTML = "";
+    OPTIONS.forEach(function (label, i) {
+      var score = i + 1;
+      var btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.type = "button";
+      btn.textContent = label;
+      if (state.answers[state.idx] === score) btn.classList.add("selected");
+      btn.addEventListener("click", function () {
+        state.answers[state.idx] = score;
+        saveProgress();
+        setTimeout(function () {
+          if (state.idx < QUESTIONS.length - 1) {
+            state.idx++;
+            saveProgress();
+            renderQuestion();
+          } else {
+            state.completed = true;
+            saveProgress();
+            showResults();
+          }
+        }, 150);
+      });
+      container.appendChild(btn);
+    });
+  }
+
+  function computeResults() {
+    var sums = {}, counts = {};
+    Object.keys(CLUSTERS).forEach(function (k) { sums[k] = 0; counts[k] = 0; });
+    QUESTIONS.forEach(function (q, i) {
+      var cluster = q[1];
+      var score = state.answers[i] || 3; // si por algo falta una respuesta, cuenta neutral
+      sums[cluster] += score;
+      counts[cluster] += 1;
+    });
+    var avgs = {}, totalAvg = 0;
+    Object.keys(CLUSTERS).forEach(function (k) {
+      avgs[k] = sums[k] / counts[k];
+      totalAvg += avgs[k];
+    });
+    var raw = {}, floors = {}, remainder = [], assigned = 0;
+    Object.keys(CLUSTERS).forEach(function (k) {
+      raw[k] = (avgs[k] / totalAvg) * 100;
+      floors[k] = Math.floor(raw[k]);
+      assigned += floors[k];
+      remainder.push([k, raw[k] - floors[k]]);
+    });
+    remainder.sort(function (a, b) { return b[1] - a[1]; });
+    var leftover = 100 - assigned;
+    for (var i = 0; i < leftover; i++) floors[remainder[i][0]] += 1;
+    return floors;
+  }
+
+  function showResults() {
+    var pct = computeResults();
+    var order = Object.keys(pct).sort(function (a, b) { return pct[b] - pct[a]; });
+    var top = order[0], second = order[1];
+
+    document.getElementById("result-headline").textContent = "Tu ruta apunta hacia: " + CLUSTERS[top].name;
+    document.getElementById("result-blurb").textContent = CLUSTERS[top].blurb;
+
+    var barsHtml = "";
+    order.forEach(function (k) {
+      barsHtml += '<div class="bar-row">' +
+        '<div class="bar-label"><span>' + CLUSTERS[k].name + '</span><span>' + pct[k] + '%</span></div>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + pct[k] + '%; background:' + CLUSTERS[k].color + ';"></div></div>' +
+        '</div>';
+    });
+    document.getElementById("bars-container").innerHTML = barsHtml;
+
+    var list = document.getElementById("careers-list");
+    var emptyMsg = document.getElementById("careers-empty-msg");
+    list.innerHTML = "";
+    if (CLUSTERS[top].careers.length === 0) {
+      list.style.display = "none";
+      emptyMsg.style.display = "block";
+      emptyMsg.textContent = "Por ahora no tenemos una carrera exacta de este perfil en " + UNI_SIGLAS + ". Escríbenos por WhatsApp y vemos juntos qué opción se ajusta mejor a ti.";
+    } else {
+      list.style.display = "";
+      emptyMsg.style.display = "none";
+      CLUSTERS[top].careers.forEach(function (c) {
+        var li = document.createElement("li");
+        li.textContent = c;
+        list.appendChild(li);
+      });
+    }
+
+    var alsoLine = document.getElementById("also-line");
+    if (pct[top] - pct[second] <= 8) {
+      var closeText = encodeURIComponent(
+        "Hola, mi test vocacional salió parejo entre " + CLUSTERS[top].name + " y " + CLUSTERS[second].name + ". ¿Me ayudan a decidir?"
+      );
+      alsoLine.innerHTML = "También muestras buena compatibilidad con " + CLUSTERS[second].name +
+        ". ¿No te decides? <a href=\"https://wa.me/" + WHATSAPP_NUMBER + "?text=" + closeText +
+        "\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent); font-weight:600;\">Escríbenos y te ayudamos</a>.";
+    } else {
+      alsoLine.textContent = "";
+    }
+
+    var waText = encodeURIComponent(
+      "Hola, hice el test vocacional de Ruta Cachimbo y mi perfil salió: " + CLUSTERS[top].name + ". Quiero información del material de la UNA Puno."
+    );
+    document.getElementById("btn-whatsapp").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + waText;
+
+    var inviteText = "Oye, acabo de hacer un test vocacional para saber qué carrera me conviene en la UNA Puno 🎯 Pruébalo tú también: " + window.location.href;
+    document.getElementById("btn-invite").href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(inviteText);
+
+    showScreen("screen-results");
+  }
+
+  document.getElementById("btn-start").addEventListener("click", function () {
+    if (saved && (saved.completed || saved.idx > 0)) {
+      var ok = window.confirm("Esto borrará tu resultado o avance anterior. ¿Quieres empezar de nuevo de todas formas?");
+      if (!ok) return;
+    }
+    clearProgress();
+    showScreen("screen-quiz");
+    renderQuestion();
+  });
+
+  document.getElementById("btn-prev").addEventListener("click", function () {
+    if (state.idx > 0) {
+      state.idx--;
+      saveProgress();
+      renderQuestion();
+    }
+  });
+
+  document.getElementById("btn-resume").addEventListener("click", function () {
+    state = saved;
+    if (resumeMode === "completed") {
+      showResults();
+    } else {
+      showScreen("screen-quiz");
+      renderQuestion();
+    }
+  });
+
+  document.getElementById("btn-restart-from-note").addEventListener("click", function () {
+    clearProgress();
+    document.getElementById("resume-note").style.display = "none";
+  });
+
+  document.getElementById("btn-restart-quiz").addEventListener("click", function () {
+    clearProgress();
+    showScreen("screen-landing");
+  });
+
+  document.getElementById("btn-restart-results").addEventListener("click", function () {
+    clearProgress();
+    showScreen("screen-landing");
+  });
+
+
+  // Init
+  renderTestimonials();
+  var resumeMode = null;
+  var saved = loadProgress();
+  if (saved) {
+    if (saved.completed) {
+      resumeMode = "completed";
+      document.getElementById("resume-note-text").textContent = "Ya hiciste este test.";
+      document.getElementById("btn-resume").textContent = "Ver mi resultado";
+      document.getElementById("resume-note").style.display = "block";
+    } else if (saved.idx > 0 && saved.idx < QUESTIONS.length) {
+      resumeMode = "progress";
+      document.getElementById("resume-note-text").textContent = "Tienes un test sin terminar.";
+      document.getElementById("btn-resume").textContent = "Continuar";
+      document.getElementById("resume-note").style.display = "block";
+    }
+  }
+})();
+</script>
+</body>
+</html>
